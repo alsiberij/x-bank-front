@@ -1,0 +1,39 @@
+
+window.onload = function () {
+const form = document.getElementById('signInForm');
+const errorMessage = document.getElementById('error-message');
+
+document.getElementById('form').addEventListener('submit', function(event) {
+  event.preventDefault(); 
+
+  const login = document.getElementById('login').value.trim();
+  const password = document.getElementById('password').value.trim();
+
+    if (login === '' || password === '' ) {
+    alert('Пожалуйста, заполните все поля!');
+    return false;
+     }
+
+  fetch('https://x-bank/verify.html?code=12345', { 
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ login: login, password: password })
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Ошибка авторизации'); 
+    }
+    return response.json(); 
+  })
+  .then(data => {
+    console.log('Успешная авторизация:', data); 
+  })
+  .catch(error => {
+    console.error('Ошибка:', error);
+    alert('Неверный логин или пароль!'); 
+  });
+});
+}
+

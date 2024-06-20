@@ -1,0 +1,154 @@
+.verify {
+    background: linear-gradient(70deg, #000, #FFF);
+    height: 820px;
+}
+
+
+.logo {
+    width: 140px;
+    margin-bottom: 79px;
+    padding: 20px;
+    margin-left: -20px;
+}
+
+.logo p{
+    font-family: 'Raleway';
+    font-size: 24px;
+    font-weight: 600;
+    color: #FFF;
+}
+
+.title {
+    width: 300px;
+    margin-bottom: 23px;
+}
+
+.title p{
+    font-size: 48px;
+    font-weight: 600;
+    color: #FFF;
+}
+
+.direction {
+    width: 129px;
+    margin-bottom: 64px;
+}
+
+.direction p{
+    font-size: 38px;
+    font-weight: 400;
+    color: #FFF;
+}
+
+.button{
+    background-color: #B98CD5;
+    width: 222px;
+    cursor: pointer;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+  .button-link{
+    width: 154px;
+    font-size: 21px;
+    font-weight: 400;
+    color: #fff;
+}
+  
+.wrapper {
+    width: 380px;
+    background: #FFF;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.tabs {
+    width: 310px;
+    display: flex;
+    justify-content: left;
+    margin-bottom: 35px;
+}
+
+.account {
+    width: 123px;
+    margin-left: 38px;
+    margin-bottom: 23px;
+}
+
+.account p {
+    font-size: 15px;
+    font-weight: 400;
+    color: #000;
+}
+
+.noactive {
+    width: 62px;
+    font-size: 22px;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: black;
+    margin-left: 40px;
+}
+
+.active {
+    width: 162px;
+    font-size: 22px;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: black;
+    margin-right: -40px;
+    margin-left: 20px;
+}
+
+.input-control{
+    width: 260px;
+    background: #D9D9D9;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0 auto 27px;
+}
+
+input {
+    width: 240px;
+    background: #D9D9D9;
+    border: transparent;
+    outline: none;
+}
+
+.btn {
+    width: 130px;
+    background: #B98CD5;
+    border-radius: 5px;
+    border: transparent;
+    padding: 10px;
+    margin: 0 auto 0;
+    color: #FFF;
+    display: block;
+    font-size: 13px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.wr-el {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wr-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.noactive-wrap {
+    width: 185px;
+    height: 63px;
+    background: #B98CD5;
+    border-radius: 18px 0 0 0;
+    margin-top: -20px;
+    margin-left: -20px;
+    padding: 18px;
+    
+}
