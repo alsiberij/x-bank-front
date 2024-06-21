@@ -14,7 +14,7 @@ document.getElementById('form').addEventListener('submit', function(event) {
     return false;
      }
 
-  fetch('https://x-bank.alsiberij.com/ms-users/', { 
+  fetch('https://x-bank.alsiberij.com/ms-users/v1/auth/sign-in', { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

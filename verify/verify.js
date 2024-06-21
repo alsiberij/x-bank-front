@@ -37,14 +37,21 @@
         },
         body: JSON.stringify({email: email, login: login, password: password, password2: password2 })
       })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Ошибка авторизации');
-        }
-        return response.json();
-      })
       .then(data => {
-        console.log('Успешная авторизация', data);
+        if (data.success) { 
+          alert('Аккаунт успешно создан!');
+          window.location.href = 'https://x-bank.alsiberij.com/ms-users/v1/auth/sign-in';
+        } else {
+          alert(data.message || 'Ошибка регистрации'); 
+        }
       })
+      .catch(error => {
+        console.error('Ошибка:', error);
+        alert('Произошла ошибка при регистрации');
+      });
     });
+    
  }
+
+
+
