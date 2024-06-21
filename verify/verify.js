@@ -1,84 +1,50 @@
-// const Form = document.getElementById('Form');
-// const email = document.getElementById('email');
-// const login = document.getElementById('login');
-// const password = document.getElementById('password');
-// const password2 = document.getElementById('password2');
 
-// window.onload = function () {
-// document.getElementById('Form').addEventListener('submit', function(event) {
-//     event.preventDefault();
+    window.onload = function () {
+    const form = document.getElementById('verifyForm');
+    const errorMessage = document.getElementById('error-message');
 
-//     validateInputs();
-// });
+    document.getElementById('form').addEventListener('submit', function(event) {
+      event.preventDefault();
 
-// const setError = (element, message) => {
-//     const inputControl = element.parentElement;
-//     const errorDisplay = inputControl.querySelector('.error');
+      const email = document.getElementById('email').value.trim();
+      const login = document.getElementById('login').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const password2 = document.getElementById('password2').value.trim();
 
-//     errorDisplay.innerText = message;
-//     inputControl.classList.add('error');
-//     inputControl.classList.remove('success')
-// }
+        if (email === '' || login === '' || password === '' || password2 === '') {
+        alert('Пожалуйста, заполните все поля!');
+        return false;
+         }
 
-// const setSuccess = element => {
-//     const inputControl = element.parentElement;
-//     const errorDisplay = inputControl.querySelector('.success');
+         if (login.length > 8) {
+            alert('Логин должнен содержать не менее 8 символов!');
+            return;
+          }
+          if (password.length < 8) {
+            alert('Пароль должен coдержать не менее 8 символов!');
+            return;
+          }
 
-//     errorDisplay.innerText = '';
-//     inputControl.classList.add('success');
-//     inputControl.classList.remove('error');
-// };
+          if (password != password2) {
+            alert('Пароли не совпадают!');
+            return;
+          }
 
-// const validateInputs = () => {
-//     const emailValue = email.value.trim();
-//     const loginValue = login.value.trim();
-//     const passwordValue = password.value.trim();
-//     const password2Value = password2.value.trim();
-
-//     if(emailValue === '') {
-//         setError(email, 'Email is required');
-//     } else if (!isValid(emailValue)) {
-//         setError(email, 'Provide a valid email address');
-//     } else {
-//         setSuccess(email);
-//     }
-
-//     if(loginValue === '') {
-//         setError(login, 'Login is required');
-//     } else {
-//         setSuccess(login);
-//     }
-    
-//     if(passwordValue === '') {
-//         setError(password, 'Password is required');
-//     } else if (passwordValue.length < 8 ) {
-//         setError(password, 'Password must be at least 8 character.')
-//     } else {
-//         setSuccess(password);
-//     }
-
-//     if(password2Value === '') {
-//         setError(password2, 'Please confirm your password');
-//     } else if (password2Value !== passwordValue) {
-//         setError(password2, "Passwords doesn't match");
-//     } else {
-//         setSuccess(password2);
-//     }
-
-// };
-// }
-
-//   if (login.length > 8) {
-//     alert('Логин должнен содержать не менее 8 символов!');
-//     return;
-//   }
-//   if (password.length < 8) {
-//     alert('Пароль должен coдуржать не менее 8 символов!');
-//     return;
-//   }
-
-
-
-
-
-
+      fetch('https://x-bank.alsiberij.com/ms-users/v1/auth/sign-up', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({email: email, login: login, password: password, password2: password2 })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Ошибка авторизации');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Успешная авторизация', data);
+      })
+    });
+ }
