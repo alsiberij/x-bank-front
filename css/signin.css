@@ -1,6 +1,6 @@
 .signin {
     background: linear-gradient(70deg, #000, #FFF);
-    height: 820px;
+    max-height: 820px;
 }
 
 
