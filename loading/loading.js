@@ -1,29 +1,18 @@
-setTimeout(function() {
-    alert('Подождите несколько секунд');
-  }, 6000); 
-  
-  
 window.onload = function () {
     async function sendVerificationRequest() {
-      const url = new URL('https://x-bank.alsiberij.com/ms-users/v1/auth/verification?code=123456');
-      const verificationCode = url.searchParams.get('code');
+      await new Promise(r => setTimeout(r, 5000));
+      let verificationCode = new URLSearchParams(window.location.search).get('code');
       if (verificationCode) {
         try {
-          const response = await fetch('https://x-bank.alsiberij.com/ms-users/v1/auth/verification?code=123456', { 
+          const response = await fetch('https://x-bank.alsiberij.com/ms-users/v1/auth/verification?code='+verificationCode, {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ verification: verificationCode })
           });
-    
           if (response.ok) {
-            console.log('Код верификации успешно отправлен');
-            alert('Аккаунт успешно активирован!');
-            window.location.href = 'https://x-bank.alsiberij.com/ms-users/v1/auth/sign-in';
+            document.getElementById('wrapper').innerHTML = '<h4 class="activation">Аккаунт успешно активирован, перенаправление...</h4>'
+            await new Promise(r => setTimeout(r, 2000));
+            window.location.href = 'https://x-bank.alsiberij.com/?activation=true';
           } else {
-            console.error('Ошибка при отправке кода верификации');
-            alert('Ошибка активации!');
+            document.getElementById('wrapper').innerHTML = '<h4 class="activation">Произошла ошибка!</h4>'
           }
         } catch (error) {
           console.error('Ошибка при отправке запроса', error);

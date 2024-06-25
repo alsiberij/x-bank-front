@@ -35,5 +35,10 @@ document.getElementById('form').addEventListener('submit', function(event) {
     alert('Неверный логин или пароль!'); 
   });
 });
+
+  let isActivation = new URLSearchParams(window.location.search).get('activation');
+  if (isActivation) {
+    document.getElementById('activation').innerHTML='<h5 class="activation">Ваш аккаунт успешно активирован!</h5>'
+  }
 }
 
