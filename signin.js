@@ -36,9 +36,16 @@ document.getElementById('form').addEventListener('submit', function(event) {
   });
 });
 
-  let isActivation = new URLSearchParams(window.location.search).get('activation');
+  let q = new URLSearchParams(window.location.search)
+
+  let isActivation = q.get('msg');
   if (isActivation) {
     document.getElementById('activation').innerHTML='<h5 class="activation">Ваш аккаунт успешно активирован!</h5>'
+  }
+
+  let isSignUp = q.get('sign-up');
+  if (isSignUp) {
+    document.getElementById('msg').innerHTML='<h5 class="activation">Аккаунт успешно создан. Проверьте email.</h5>'
   }
 }
 

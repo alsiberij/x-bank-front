@@ -38,9 +38,8 @@
         body: JSON.stringify({email: email, login: login, password: password, password2: password2 })
       })
       .then(data => {
-        if (data.success) { 
-          alert('Аккаунт успешно создан, проверьте email!');
-          window.location.href = 'https://x-bank.alsiberij.com/ms-users/v1/auth/sign-in';
+        if (data.ok) {
+          window.location.href = 'https://x-bank.alsiberij.com/?sign-up=true';
         } else {
           alert(data.message || 'Ошибка регистрации!'); 
         }
