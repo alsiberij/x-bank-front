@@ -1,0 +1,61 @@
+.loading {
+    background: linear-gradient(70deg, #000, #FFF);
+    height: 820px;
+}
+
+
+.logo {
+    width: 140px;
+    margin-bottom: 172px;
+    padding: 20px;
+    margin-left: -20px;
+}
+
+.logo p{
+    font-family: 'Raleway';
+    font-size: 24px;
+    font-weight: 600;
+    color: #FFF;
+}
+
+.wrapper {
+    width: 380px;
+    background: #FFF;
+    border-radius: 20px;
+    padding: 40px;
+    margin: auto;
+}
+
+.loading-line {
+    font-size: 18px;
+    font-weight: 400;
+    color: #000;
+    margin: 60px auto 40px;
+    text-align: center;
+}
+
+.outer-loader {
+    width: 240px;
+    height: 4px;
+    background: lightgrey;
+    margin: 0 auto 100px;
+}
+
+.inner-loader {
+    width: 70px;
+    height: 4px;
+    background: black;
+    animation: animation 2s infinite;
+}
+
+@keyframes animation {
+    0% {
+        transform: translatex(0);
+    }
+    50% {
+        transform: translatex(170px);
+    }
+    100% {
+        transform: translatex(0);
+    }
+}
