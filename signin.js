@@ -38,9 +38,9 @@ document.getElementById('form').addEventListener('submit', function(event) {
 
   let q = new URLSearchParams(window.location.search)
 
-  let isActivation = q.get('msg');
+  let isActivation = q.get('activation');
   if (isActivation) {
-    document.getElementById('activation').innerHTML='<h5 class="activation">Ваш аккаунт успешно активирован!</h5>'
+    document.getElementById('msg').innerHTML='<h5 class="activation">Ваш аккаунт успешно активирован!</h5>'
   }
 
   let isSignUp = q.get('sign-up');
