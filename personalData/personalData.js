@@ -1,22 +1,22 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  let accessToken = localStorage.getItem("accessToken");
-  let refreshToken = localStorage.getItem("refreshToken");
-  if (!accessToken || !refreshToken) {
+  let userAccessToken = localStorage.getItem("accessToken");
+  let userRefreshToken = localStorage.getItem("refreshToken");
+  if (!userAccessToken || !userRefreshToken) {
     throw new Error("Ошибка авторизации");
   }
 
-  let response = await getUserPersonalData(accessToken);
+  let response = await getUserPersonalData(userAccessToken);
   if (!response.ok) {
-    let refreshResponse = await fetchRefresh(refreshToken);
+    let refreshResponse = await fetchRefresh(userRefreshToken);
     if (!refreshResponse) {
       window.location.href = "/";
     }
-    const { newAccessToken, newRefreshToken } = await refreshResponse.json();
-    accessToken = newAccessToken;
-    refreshToken = newRefreshToken;
-    localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("refreshToken", refreshToken);
-    response = await getUserPersonalData(accessToken);
+    const { accessToken, refreshToken } = await refreshResponse.json();
+    userAccessToken = accessToken;
+    userRefreshToken = refreshToken;
+    localStorage.setItem("accessToken", userAccessToken);
+    localStorage.setItem("refreshToken", userRefreshToken);
+    response = await getUserPersonalData(userAccessToken);
   }
 
 
@@ -47,11 +47,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   response = await fetch("https://x-bank.alsiberij.com/ms-users/v1/me", {
     method: "GET",
     headers: {
-      "Authorization": "Bearer " + accessToken,
+      "Authorization": "Bearer " + userAccessToken,
     },
   });
 
-  const { id, uuid, login, email, telegramId, createdAt } = await response.json();
+  const { telegramId } = await response.json();
   if (telegramId > 0) {
     document.getElementById("tg-id").value = telegramId;
   } else {

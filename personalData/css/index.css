@@ -7,19 +7,19 @@
     box-sizing: border-box;
     list-style: none;
     text-decoration: none;
-  }
+}
 
-  html {
+html {
     font-family: "Open Sans", "Raleway", sans-serif;
-  }
+}
 
-  .container {
+.container {
     max-width: 1170px;
     padding: 0 15px;
     margin: auto;
-  }
+}
 
-  body {
-      min-height: 100vh;
-      background: linear-gradient(70deg, #000, #FFF);
-  }
+body {
+    min-height: 100vh;
+    background: linear-gradient(70deg, #000, #FFF);
+}
