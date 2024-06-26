@@ -18,3 +18,8 @@
     padding: 0 15px;
     margin: auto;
   }
+
+  body {
+      background: linear-gradient(70deg, #000, #FFF);
+      min-height: 100vh;
+  }

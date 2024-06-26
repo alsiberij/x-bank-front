@@ -1,5 +1,5 @@
 @import url("./_fonts.css");
-@import url("./personaldate.css");
+@import url("personalData.css");
 
 * {
     margin: 0;
@@ -17,4 +17,9 @@
     max-width: 1170px;
     padding: 0 15px;
     margin: auto;
+  }
+
+  body {
+      min-height: 100vh;
+      background: linear-gradient(70deg, #000, #FFF);
   }

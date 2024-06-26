@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="personalData.js"></script>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="menu">
+            <div class="logo"><p>X-Bank</p></div>
+            <nav class="navigation">
+                <ul class="nav-list">
+                    <img src="./img/user.png" alt="/">
+                    <a href="">Имя пользователя</a>
+                    <img src="./img/exit.png" alt="/">
+                    <a href="../index.html">Выйти</a>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</header>
+
+<section class="personaldate">
+    <div class="container">
+        <form id="personal-data">
+            <div class="description"><p>Персональные данные</p></div>
+            <label for="gender">Пол:</label>
+            <select id="gender" name="gender">
+                <option value="">Выберите пол</option>
+                <option value="male">Мужской</option>
+                <option value="female">Женский</option>
+            </select>
+
+            <label for="lastName">Фамилия:</label>
+            <input type="text" id="lastName" placeholder="Иванов">
+
+            <label for="firstName">Имя:</label>
+            <input type="text" id="firstName" placeholder="Иван">
+
+            <label for="fathersName">Отчество:</label>
+            <input type="text" id="fathersName" placeholder="Иванович">
+
+            <label for="phoneNumber">Номер телефона:</label>
+            <input type="tel" id="phoneNumber" placeholder="+375(29)1234567">
+
+            <label for="passportId">Идентификационный номер паспорта:</label>
+            <input type="tel" id="passportId" placeholder="1234567891234ВА">
+
+            <label for="dateOfBirth">Дата рождения:</label>
+            <input type="date" id="dateOfBirth">
+
+            <label for="liveInCountry">Страна проживания:</label>
+            <select id="liveInCountry">
+                <option value="bel">Республика Беларусь</option>
+                <option value="rus">Россия</option>
+                <option value="uk">Украина</option>
+            </select>
+
+            <label for="address">Адрес проживания:</label>
+            <input type="text" id="address" placeholder="ул.Ленина 1">
+
+            <label for="tg-id">Telegram ID:</label>
+            <div class="tg">
+                <input class="tg-id" type="text" id="tg-id" name="tg-id" placeholder="1234567">
+                <button class="button" id="deleteTg">Отвязать</button>
+                <button class="button" id="bindTg" hidden="hidden">Привязать телеграм</button>
+            </div>
+
+        </form>
+
+    </div>
+</section>
+</body>
+</html>
