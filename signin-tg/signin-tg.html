@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="./css/index.css">
+    <script src="./signin-tg.js"></script>
 </head>
 <body>
    <section class="signin-tg">
@@ -19,20 +20,19 @@
     <div class="wrapper">
             <ul class="tabs">
                 <li>
-                  <a href="../signin/index.html" class="active">Вход</a>
+                  <a href="/index.html" class="active">Вход</a>
                 </li>
                 <div class="noactive-wrap">
                 <li>
-                  <a href="../verify/index.html" class="noactive">Регистрация</a>
+                  <a href="/verify/verify.html" class="noactive">Регистрация</a>
                 </li></div>
               </ul>
               <div class="account"><p>Введите код из Telegram</p></div>
               <form id="form" action="/">
             <div class="input-control">
-                <input type="pin" required><div class="error" aria-placeholder=" "></div><div class="error"></div></div> 
-                <div>
-                    <button class="notcontrol">Отправить код повторно</button><div class="error"></div> </div>
-            <div class="confirm"><a href="/">Подтвердить</a></div>
+                <input  name="twoFactorCode" type="pin" required></div> 
+                    <button class="notcontrol" type="submit">Отправить код повторно</button>
+            <button class="confirm" id="signinTgButton" type="submit">Подтвердить</button>
         </form>
     </div>
 

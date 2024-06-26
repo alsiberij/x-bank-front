@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/index.css">
-    <script src="./signin.js"></script>
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/signin.js"></script>
 </head>
 <body>
    <section class="signin">
@@ -31,18 +31,16 @@
               <div id="msg"></div>
             <div class="input-control">
               <label for="login"></label>
-                <input id="login" name="login" type="text" placeholder="Логин" required> <div class="error"></div><div class="error"></div></div> 
+                <input id="login" name="login" type="text" minlength="3" maxlength="32" placeholder="Логин" required> <div class="error"></div><div class="error"></div></div> 
                 <div class="input-control">
                   <label for="password"></label>
-                    <input id="password" name="password" maxlength="8" size="8" type="password" placeholder="Пароль" required> <div class="error"></div> </div>
-            <button type="submit" class="btn">Войти</button>
+                    <input id="password" name="password" minlength="6" maxlength="32" size="8" type="password" placeholder="Пароль" required> <div class="error"></div> </div>
+            <button id="signinButton" type="submit" class="btn">Войти</button>
             <p id="message"></p>
             </div>
         </form>
     </div>
 </div>
-
-   </div>
    </section> 
    
 </body>

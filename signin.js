@@ -47,5 +47,36 @@ document.getElementById('form').addEventListener('submit', function(event) {
   if (isSignUp) {
     document.getElementById('msg').innerHTML='<h5 class="activation">Аккаунт успешно создан. Проверьте email.</h5>'
   }
-}
 
+
+const signinButton = document.getElementById('signinButton'); 
+
+signinButton.addEventListener('click', async () => {
+  try {
+    const response = await fetch('https://x-bank.alsiberij.com/ms-users/v1/auth/sign-in/2fa', { 
+      method: 'POST',
+    });
+
+    if (!response.ok) {
+      throw new Error('Ошибка входа');
+    }
+    const data = await response.json();
+
+    if (data.accessToken && data.refreshToken) {
+      localStorage.setItem('accessToken', data.accessToken);
+      localStorage.setItem('refreshToken', data.refreshToken);
+
+      window.location.href = 'https://x-bank.alsiberij.com/?personal-data=true';
+    } else if (data.twoFactorToken) {
+      localStorage.setItem('twoFactorToken', data.twoFactorToken);
+
+      window.location.href = 'https://x-bank.alsiberij.com/?signin-tg=true';
+    } else {
+
+      console.error('Неверный ответ сервера', data);
+    }
+  } catch (error) {
+    console.error('Ошибка', error);
+  }
+});
+}

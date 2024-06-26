@@ -1,11 +1,11 @@
 .signin-tg {
     background: linear-gradient(70deg, #000, #FFF);
-    max-height: 820px;
+    height: 820px;
 }
 
 .logo {
     width: 140px;
-    margin-bottom: 164px;
+    margin-bottom: 172px;
     padding: 20px;
     margin-left: -20px;
 }
@@ -112,7 +112,7 @@
     border: 1px solid red;
     border-radius: 5px;
     padding: 13px;
-    margin: 0 auto 10px;
+    margin: 0 auto 20px;
     text-align: center;
     background: #fff;
     cursor: pointer;
@@ -127,19 +127,25 @@ input {
 }
 
 .confirm {
-    width: 80px;
-    margin: auto;
-    margin-bottom: 15px;
-    border-bottom: 1px solid black;
-    width: 85px;
+width: 90px;
+margin: 10px auto 10px;
+border: none;
+background-color: #FFF;
+cursor: pointer;
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
-a {
-    font-size: 13px;
-    font-weight: 400;
-    color: #000;
-    text-align: center;
-}
+.confirm:before {
+    content: ' ';
+    position: absolute;
+    width: 80px;
+    height: 1px;
+    top: 15px;
+    background: #000;
+  }
 
 .wr-el {
     display: flex;
