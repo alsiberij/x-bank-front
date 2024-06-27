@@ -123,19 +123,16 @@ select {
 }
 
 .tg {
-    width: 150px;
     display: flex;
     justify-content: flex-start;
 }
 
 .tg-id {
-    width: 75px;
     border-radius: 5px 0 0 5px;
-
+    width: 100px;
 }
 
 .button {
-    width: 100%;
     height: 30px;
     padding: 5px;
     margin: 5px 0;
@@ -149,10 +146,6 @@ select {
 
 .button:hover {
     background-color: #b37adb;
-}
-
-#personal-data {
-    pointer-events: none;
 }
 
 #bindTg {

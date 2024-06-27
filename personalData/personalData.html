@@ -64,15 +64,14 @@
             <label for="address">Адрес проживания:</label>
             <input type="text" id="address" placeholder="ул.Ленина 1">
 
-            <label for="tg-id">Telegram ID:</label>
-            <div class="tg">
-                <input class="tg-id" type="text" id="tg-id" name="tg-id" placeholder="1234567">
-                <button class="button" id="deleteTg">Отвязать</button>
-                <button class="button" id="bindTg" hidden="hidden">Привязать телеграм</button>
+            <div class="tg" id="tgwrap" style="display: flex; justify-content: space-between">
+                <p style="display: flex; justify-content: center; align-items: center; font-size: 20px;">Telegram</p>
+                <div id="tginputwrap" style="display: flex">
+                    <input class="tg-id" type="text" id="tg-id" name="tg-id" placeholder="" hidden="hidden" style="margin: 0;">
+                    <button class="button" id="deleteTg" type="button" hidden="hidden" style="margin: 0;">Отвязать</button>
+                </div>
             </div>
-
         </form>
-
     </div>
 </section>
 </body>

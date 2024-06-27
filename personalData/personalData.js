@@ -1,23 +1,48 @@
-document.addEventListener("DOMContentLoaded", async () => {
-  let userAccessToken = localStorage.getItem("accessToken");
-  let userRefreshToken = localStorage.getItem("refreshToken");
-  userAccessToken = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlYWU0ZmU1NS0wYzQ4LTQyZjAtYmExNy02Y2EwZDAzYmUwZjEiLCJpYXQiOjE3MTk0NzI5ODQsImV4cCI6MTcxOTQ3MzI4NCwic3ViIjozLCIyZmEiOmZhbHNlLCJpZGYiOnRydWV9.RG9YmmYSkdK6-hJB0_fMXwCOY9kyVJwxaNVU44EDYt1E_HVZOWgXX3mpH-rF91HhwCTrQDzI0E0kYbiILEgj8fU06agXyBcgyl9fXD-nUNzGXSNjNj6ILlXkKSTII68g10ZsVyTNwHkfnQb2puvbYdHYq2H7YWmo-qBwsWYbPsyKGVbkim_sVBgOcqi7AWR4bBITDIXYxMxl4caZNa4JdjgwUv-DQxo45TGzfSGvk_f5PsP-QvY8lzMhJuYoZf36o-Ks35SY1KmpWjSXx7S93IJt274Wc9unf7oYcIZCJpdV_KmJSmu5V2OKb00bVsiClDCcyIeKagRZV1QHzrpQWg"
-  if (!userAccessToken || !userRefreshToken) {
-    throw new Error("Ошибка авторизации");
-  }
+//localStorage.setItem('accessToken', 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3OThkOTZjZC0zZWQ1LTQyNWUtOTg3ZS1iZTEzOWE5YjdjM2IiLCJpYXQiOjE3MTk0ODE4OTAsImV4cCI6MTcxOTQ4MjE5MCwic3ViIjoxLCIyZmEiOmZhbHNlLCJpZGYiOnRydWV9.Y4kAPhX1gfXmRJLJ6lTwGdTc1oleud4NE0FMe6qGdtOML2K8qWUOs8zaVlIg56uGignbkMQe0hPfK4xvDWE72yx_voXU5Zfg60X9Qz0YhhuWmuguZn7IFOsWl_DxkWMbk29xzFaSkhMUlc1SDO0BlB00hbwpVRGsjksrDANx4uyJUJxmzM0arct4IDEKssXYOQUC-5hcJ9Z7bJi6D0HpvcrKe_oRO-Cp2-NKP4u7k6jZj_sAQ4qomNqjNg8kID6Ibi1_l_ReKRFUaVyTLzmm2M-xUwP-RaOaC5DPErM1Kc-9QrGUaxw9VobDt9nGO-ZmSUEwmpagC18LISe1owBaUA')
+//localStorage.setItem('refreshToken', '...-..-..-.-..-...-.-......-----......-...-.-----.-.-...----...-.....------..-----.....---.---.----...-..----..----..-.----.--......-....--..-.--.-...-----.....-.---..-.-.----..-....-.--.----.---..-.-......----.---....---...----.-.--.---.-.....---.----.-.-....-.-.-....-.........--.-.....--..-.-.-.....--..--.----...-..-...-..-.---..-...-...--.---..--..-.----..--....-....--.---....-----.---.......--..----..--.--.-.---.-...-...-...-.---.-.....---....-.-.---.--....-.--.--.--.....-.----.-.......-.--.....-.-.--.-...-..----...---.--...-.----..-.-.-..-.....-...-..---..-..-...------..----........-.--.-.-.--...--.-----.-.-.....-.-.--.-..-..--.---.-.-.......-....-..-..----.-.-.-...---.---....-..----...-.---....-.--.--.--....-.--.----.-...-..--...----..........-.--..-.--...-.....---...............-..--.-...-----.----.----.-.---.-..--......----------..-----.-.--.--...----...-..---..-..--.-..-----.....----.-.-.----...--...---....---.--..-...-.--.--...-----.----.--..-.--....---.-.-.-.---...-.-.-...-.---.-.-.-----.--...---.--.-..-..----......-.--....-.---.-...-..-----.--.----.-...--..----.-..-..-.....---.-...---......--....--.--...-----.-.--...-----..----.....-----....--.-.....-.---.-..-....--......-...--...-..---.-..-.--..------......--..-....-...-.-.--..-...--.---.----.-...--.----.-.--..---.--.-......----..--.-..--.....-.--.....-.-.-.-.-...---.----.-..-...--.--...-----..-..-.---.....--.-..---..----.-..-.-..-..-.--....--..-....-----..-----....-.-.......---.-....-.--..----.-.--...-.-..-.--.--.---.-...--.---.---...-..--....--.-.-.--..-..---..-.--.--.-.-.-.......-.-.-.-.----.-....-.-...-.--..-.-......--.-....--..--.-.....---....---.---------....---.-.--.--...---..-----..--.---.---...-.....--.------..--.-...---..-.--...-.---...-..-..-..-...--......-.-.----------....-.-....-..---.-..---.-.-.----.-----------..--.-.-.----.--....-..---..---.--.--..-..-.-.--.-------.---...---.-.------..--..-...---.-..-.--..-...----..--.-.-.-.....-.---..-..-....--..---.---..-.....--.----.......-...---.....-.-.-....-----.--...-..-.-.--.-.-...-------------')
 
-  let response = await getUserPersonalData(userAccessToken);
+
+//let userAccessToken = localStorage.getItem("accessToken");
+//let userRefreshToken = localStorage.getItem("refreshToken");
+
+// if (!userAccessToken || !userRefreshToken) {
+//   throw new Error("Ошибка авторизации");
+// }
+
+var widgetLoaded = false
+
+document.addEventListener("DOMContentLoaded", async () => {
+  document.getElementById("deleteTg").addEventListener("click", async () => {
+    const response = await fetch("https://x-bank.alsiberij.com/ms-users/v1/telegram", {
+      method: "DELETE",
+      headers: {
+        "Authorization": "Bearer " + localStorage.getItem("accessToken"),
+      },
+    });
+    if (!response.ok) {
+      throw new Error("Ошибка при попытке отвязать телеграм");
+    }
+    if (widgetLoaded) {
+        document.getElementById("telegram-login-xbank_lwo_bot").hidden = false
+    } else {
+        await loadTgWidget();
+        widgetLoaded = true
+    }
+    document.getElementById("deleteTg").hidden = true
+    document.getElementById("tg-id").hidden = true
+    return false;
+  });
+
+  let response = await getUserPersonalData(localStorage.getItem("accessToken"));
   if (!response.ok) {
-    let refreshResponse = await fetchRefresh(userRefreshToken);
-    if (!refreshResponse) {
+    let refreshResponse = await fetchRefresh(localStorage.getItem("refreshToken"));
+    if (!refreshResponse.ok) {
       window.location.href = "/";
     }
-    const { accessToken, refreshToken } = await refreshResponse.json();
-    userAccessToken = accessToken;
-    userRefreshToken = refreshToken;
-    localStorage.setItem("accessToken", userAccessToken);
-    localStorage.setItem("refreshToken", userRefreshToken);
-    response = await getUserPersonalData(userAccessToken);
+    let resp = await refreshResponse.json();
+    localStorage.setItem("accessToken", resp['tokens']['accessToken']);
+    localStorage.setItem("refreshToken", resp['tokens']['refreshToken']);
+    response = await getUserPersonalData(resp['tokens']['accessToken']);
   }
 
 
@@ -49,7 +74,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   response = await fetch("https://x-bank.alsiberij.com/ms-users/v1/me", {
     method: "GET",
     headers: {
-      "Authorization": "Bearer " + userAccessToken,
+      "Authorization": "Bearer " + localStorage.getItem("accessToken"),
     },
   });
 
@@ -63,23 +88,17 @@ document.addEventListener("DOMContentLoaded", async () => {
   document.getElementById("username").innerText = login
   if (telegramId > 0) {
     document.getElementById("tg-id").value = telegramId;
+      document.getElementById("deleteTg").hidden = false
+      document.getElementById("tg-id").hidden = false
   } else {
-    document.getElementById("deleteTg").hidden = true;
-    document.getElementById("tg-id").hidden = true;
-    document.getElementById("bindTg").hidden = false;
-  }
-});
-
-document.getElementById("deleteTg").addEventListener("click", async () => {
-  let accessToken = localStorage.getItem("accessToken");
-  const response = await fetch("https://x-bank.alsiberij.com/ms-users/v1/telegram", {
-    method: "DELETE",
-    headers: {
-      "Authorization": "Bearer " + accessToken,
-    },
-  });
-  if (!response.ok) {
-    throw new Error("Ошибка при попытке отвязать телеграм");
+      if (widgetLoaded) {
+          document.getElementById("telegram-login-xbank_lwo_bot").hidden = false
+      } else {
+          await loadTgWidget();
+          widgetLoaded = true
+      }
+    document.getElementById("deleteTg").hidden = true
+    document.getElementById("tg-id").hidden = true
   }
 });
 
@@ -100,4 +119,67 @@ async function fetchRefresh(refreshToken) {
     },
     body: JSON.stringify({ "refreshToken": refreshToken }),
   });
+}
+
+// auth_date
+//     :
+//     1719483059
+// first_name
+//     :
+//     "Александр"
+// hash
+//     :
+//     "af23b40280db0fad8bad8646f192fa60cef5cc5a12630da3fc0a592d9fa4b722"
+// id
+//     :
+//     476888502
+// photo_url
+//     :
+//     "https://t.me/i/userpic/320/Vk1_cT5CDnZ9UwUtWYwmeSuk-cPqGaI4lKKlQgg2zYc.jpg"
+// username
+//     :
+//     "alsiberij"
+
+async function fetchLinkTg(user, accessToken) {
+  return await fetch("https://x-bank.alsiberij.com/ms-users/v1/telegram", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + accessToken,
+    },
+    body: JSON.stringify({
+      "id": user.id,
+      "firstname": user.first_name,
+      "lastname": user.last_name,
+      "username": user.username,
+      "photoUrl": user.photo_url,
+      "authDate": user.auth_date,
+      "hash": user.hash
+    }),
+  });
+}
+
+async function onTelegramAuth(user) {
+    let response = await fetchLinkTg(user, localStorage.getItem("accessToken"));
+    if (!response.ok) {
+        let resp = await response.json();
+        alert(resp)
+    }
+    document.getElementById("tg-id").value = user.id;
+    document.getElementById("telegram-login-xbank_lwo_bot").hidden = true
+    document.getElementById("deleteTg").hidden = false
+    document.getElementById("tg-id").hidden = false
+}
+
+async function loadTgWidget() {
+    var script = document.createElement('script');
+    script.setAttribute("src", "https://telegram.org/js/telegram-widget.js?22")
+    script.setAttribute("data-telegram-login", "xbank_lwo_bot")
+    script.setAttribute("data-size", "medium")
+    script.setAttribute("data-radius", "5")
+    script.setAttribute("data-onauth", "onTelegramAuth(user)")
+    script.setAttribute("data-request-access", "write")
+
+
+    document.getElementById('tgwrap').appendChild(script);
 }
