@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
   let userAccessToken = localStorage.getItem("accessToken");
   let userRefreshToken = localStorage.getItem("refreshToken");
+  userAccessToken = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJlYWU0ZmU1NS0wYzQ4LTQyZjAtYmExNy02Y2EwZDAzYmUwZjEiLCJpYXQiOjE3MTk0NzI5ODQsImV4cCI6MTcxOTQ3MzI4NCwic3ViIjozLCIyZmEiOmZhbHNlLCJpZGYiOnRydWV9.RG9YmmYSkdK6-hJB0_fMXwCOY9kyVJwxaNVU44EDYt1E_HVZOWgXX3mpH-rF91HhwCTrQDzI0E0kYbiILEgj8fU06agXyBcgyl9fXD-nUNzGXSNjNj6ILlXkKSTII68g10ZsVyTNwHkfnQb2puvbYdHYq2H7YWmo-qBwsWYbPsyKGVbkim_sVBgOcqi7AWR4bBITDIXYxMxl4caZNa4JdjgwUv-DQxo45TGzfSGvk_f5PsP-QvY8lzMhJuYoZf36o-Ks35SY1KmpWjSXx7S93IJt274Wc9unf7oYcIZCJpdV_KmJSmu5V2OKb00bVsiClDCcyIeKagRZV1QHzrpQWg"
   if (!userAccessToken || !userRefreshToken) {
     throw new Error("Ошибка авторизации");
   }
@@ -22,6 +23,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const userData = await response.json();
   if (userData) {
+    const {personalData} = userData;
     const {
       phoneNumber,
       firstName,
@@ -32,7 +34,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       address,
       gender,
       liveInCountry,
-    } = userData;
+    } = personalData;
     document.getElementById("phoneNumber").value = phoneNumber;
     document.getElementById("firstName").value = firstName;
     document.getElementById("lastName").value = lastName;
@@ -51,7 +53,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     },
   });
 
-  const { telegramId } = await response.json();
+  let userata = await response.json();
+  console.log(userata)
+
+  const { telegramId, login } = userata;
+  if (!login) {
+    throw new Error("Логин отсутствует в системе")
+  }
+  document.getElementById("username").innerText = login
   if (telegramId > 0) {
     document.getElementById("tg-id").value = telegramId;
   } else {
