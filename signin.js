@@ -37,7 +37,7 @@ document.getElementById('form').addEventListener('submit', function(event) {
     // console.log('Refresh token:', data.tokens.refreshToken);
     localStorage.setItem("accessToken", data.tokens.accessToken);
     localStorage.setItem("refreshToken", data.tokens.refreshToken);
-    window.location.href = 'https://x-bank.alsiberij.com/?personal-data=true';
+    window.location.href = 'http://127.0.0.1:5500/personalData/personalData.html';
   })
   .catch(error => {
     console.error('Ошибка:', error);
