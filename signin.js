@@ -11,6 +11,7 @@ document.getElementById('form').addEventListener('submit', function(event) {
   const password = document.getElementById('password').value.trim();
   const accessToken = document.getElementById("accessToken");
   const refreshToken = document.getElementById("refreshToken");
+  const twoFactorAuthenticationToken = document.getElementById("twoFactorAuthenticationToken");
 
     if (login === '' || password === '' ) {
     alert('Пожалуйста, заполните все поля!');
@@ -22,7 +23,7 @@ document.getElementById('form').addEventListener('submit', function(event) {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ login: login, password: password, accessToken, refreshToken})
+    body: JSON.stringify({ login: login, password: password, accessToken, refreshToken, twoFactorAuthenticationToken})
   })
   
   .then(response => {
@@ -35,9 +36,16 @@ document.getElementById('form').addEventListener('submit', function(event) {
     console.log('Успешная авторизация:', data); 
     // console.log('Access token:', data.tokens.accessToken);
     // console.log('Refresh token:', data.tokens.refreshToken);
+   
+    if (response.data.tokens.twoFactorAuthenticationToken) {
+      localStorage.setItem('twoFactorAuthenticationToken', response.data.tokens.twoFactorAuthenticationToken);
+      window.location.href = '/signin-tg/signin-tg.html';
+    }
+  else {
     localStorage.setItem("accessToken", data.tokens.accessToken);
     localStorage.setItem("refreshToken", data.tokens.refreshToken);
-    window.location.href = 'http://127.0.0.1:5500/personalData/personalData.html';
+    window.location.href = '/personalData/personalData.html';
+  }
   })
   .catch(error => {
     console.error('Ошибка:', error);

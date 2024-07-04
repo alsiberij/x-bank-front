@@ -106,18 +106,6 @@
     margin: 0 auto 27px;
 }
 
-.notcontrol {
-    width: 260px;
-    display: block;
-    border: 1px solid red;
-    border-radius: 5px;
-    padding: 13px;
-    margin: 0 auto 20px;
-    text-align: center;
-    background: #fff;
-    cursor: pointer;
-}
-
 input {
     width: 240px;
     background: #FFF;
