@@ -4,26 +4,26 @@ const form = document.getElementById('signInForm');
 const errorMessage = document.getElementById('error-message');
 
 
-document.getElementById('form').addEventListener('submit', function(event) {
+document.getElementById('form').addEventListener('submit', async function(event) {
   event.preventDefault(); 
 
   const login = document.getElementById('login').value.trim();
   const password = document.getElementById('password').value.trim();
   const accessToken = document.getElementById("accessToken");
   const refreshToken = document.getElementById("refreshToken");
-  const twoFactorAuthenticationToken = document.getElementById("twoFactorAuthenticationToken");
+  const twoFA = document.getElementById('2FA');
 
     if (login === '' || password === '' ) {
     alert('Пожалуйста, заполните все поля!');
     return false;
      }
 
-  fetch('https://x-bank.alsiberij.com/ms-users/v1/auth/sign-in', { 
+   fetch('https://x-bank.alsiberij.com/ms-users/v1/auth/sign-in', { 
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ login: login, password: password, accessToken, refreshToken, twoFactorAuthenticationToken})
+    body: JSON.stringify({ login: login, password: password, accessToken, refreshToken, twoFA })
   })
   
   .then(response => {
@@ -36,10 +36,11 @@ document.getElementById('form').addEventListener('submit', function(event) {
     console.log('Успешная авторизация:', data); 
     // console.log('Access token:', data.tokens.accessToken);
     // console.log('Refresh token:', data.tokens.refreshToken);
-   
-    if (response.data.tokens.twoFactorAuthenticationToken) {
-      localStorage.setItem('twoFactorAuthenticationToken', response.data.tokens.twoFactorAuthenticationToken);
+ 
+    if (data['2FA']) {
+      localStorage.setItem('2FA', data['2FA']);
       window.location.href = '/signin-tg/signin-tg.html';
+      console.log('2FA', data['2FA']);
     }
   else {
     localStorage.setItem("accessToken", data.tokens.accessToken);

@@ -1,15 +1,15 @@
 window.onload = function (){
 const twoFactorAuthenticationToken = localStorage.getItem('twoFactorAuthenticationToken');
-const twoFactorAuthenticationCode = document.getElementById('twoFactorAuthenticationCode').value;
+const twoFactorAuthenticationCode = document.getElementById('2FA').value;
 
 
 fetch('https://x-bank.alsiberij.com/ms-users/v1/auth/sign-in/2fa', {
   method: 'POST',
   headers: {
-    'Authorization': "Bearer " + localStorage.getItem("twoFactorAuthenticationToken"),
+    'Authorization': "Bearer " + localStorage.getItem("2FA"),
     'Content-Type': 'application/json',
   },
-  body: JSON.stringify({ code: twoFactorAuthenticationCode }),
+  body: JSON.stringify({ code: '327305' }),
 })
   .then(response => {
     if (!response.ok) {
