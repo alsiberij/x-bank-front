@@ -31,43 +31,44 @@
             <div class="description"><p>Персональные данные</p></div>
             <label for="gender">Пол:</label>
             <select id="gender" name="gender">
-                <option value="">Выберите пол</option>
+                <option value=""></option>
                 <option value="male">Мужской</option>
                 <option value="female">Женский</option>
             </select>
 
             <label for="lastName">Фамилия:</label>
-            <input type="text" id="lastName" placeholder="Иванов">
+            <input type="text" id="lastName">
 
             <label for="firstName">Имя:</label>
-            <input type="text" id="firstName" placeholder="Иван">
+            <input type="text" id="firstName">
 
             <label for="fathersName">Отчество:</label>
-            <input type="text" id="fathersName" placeholder="Иванович">
+            <input type="text" id="fathersName">
 
             <label for="phoneNumber">Номер телефона:</label>
-            <input type="tel" id="phoneNumber" placeholder="+375(29)1234567">
+            <input type="tel" id="phoneNumber">
 
             <label for="passportId">Идентификационный номер паспорта:</label>
-            <input type="tel" id="passportId" placeholder="1234567891234ВА">
+            <input type="tel" id="passportId">
 
             <label for="dateOfBirth">Дата рождения:</label>
             <input type="date" id="dateOfBirth">
 
             <label for="liveInCountry">Страна проживания:</label>
             <select id="liveInCountry">
+                <option value=""></option>
                 <option value="bel">Республика Беларусь</option>
                 <option value="rus">Россия</option>
                 <option value="uk">Украина</option>
             </select>
 
             <label for="address">Адрес проживания:</label>
-            <input type="text" id="address" placeholder="ул.Ленина 1">
+            <input type="text" id="address">
 
             <div class="tg" id="tgwrap" style="display: flex; justify-content: space-between">
                 <p style="display: flex; justify-content: center; align-items: center; font-size: 20px;">Telegram</p>
                 <div id="tginputwrap" style="display: flex">
-                    <input class="tg-id" type="text" id="tg-id" name="tg-id" placeholder="" hidden="hidden" style="margin: 0;">
+                    <input class="tg-id" type="text" id="tg-id" name="tg-id" hidden="hidden" style="margin: 0;">
                     <button class="button" id="deleteTg" type="button" hidden="hidden" style="margin: 0;">Отвязать</button>
                 </div>
             </div>

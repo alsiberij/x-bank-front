@@ -42,26 +42,33 @@ document.addEventListener("DOMContentLoaded", async () => {
   const userData = await response.json();
   if (userData) {
     const {personalData} = userData;
-    const {
-      phoneNumber,
-      firstName,
-      lastName,
-      fathersName,
-      dateOfBirth,
-      passportId,
-      address,
-      gender,
-      liveInCountry,
-    } = personalData;
-    document.getElementById("phoneNumber").value = phoneNumber;
-    document.getElementById("firstName").value = firstName;
-    document.getElementById("lastName").value = lastName;
-    document.getElementById("fathersName").value = fathersName;
-    document.getElementById("address").value = address;
-    document.getElementById("gender").value = gender;
-    document.getElementById("liveInCountry").value = liveInCountry;
-    document.getElementById("dateOfBirth").value = dateOfBirth;
-    document.getElementById("passportId").value = passportId;
+    if (personalData) {
+        const {
+            phoneNumber,
+            firstName,
+            lastName,
+            fathersName,
+            dateOfBirth,
+            passportId,
+            address,
+            gender,
+            liveInCountry,
+        } = personalData;
+        document.getElementById("phoneNumber").value = phoneNumber;
+        document.getElementById("firstName").value = firstName;
+        document.getElementById("lastName").value = lastName;
+        document.getElementById("fathersName").value = fathersName;
+        document.getElementById("address").value = address;
+        document.getElementById("gender").value = gender;
+        document.getElementById("liveInCountry").value = liveInCountry;
+        document.getElementById("dateOfBirth").value = dateOfBirth;
+        document.getElementById("passportId").value = passportId;
+    } else {
+        let el = document.createElement("h2");
+        el.innerHTML = "Нет данных";
+        el.style.textAlign = 'center';
+        document.getElementsByClassName("description")[0].appendChild(el);
+    }
   }
 
   response = await fetch("https://x-bank.alsiberij.com/ms-users/v1/me", {
